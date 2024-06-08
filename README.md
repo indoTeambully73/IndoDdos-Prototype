@@ -9,7 +9,7 @@ pkg install git
 
 git clone https://github.com/indoTeambully73/IndoDdos-Prototype.git
 
-cd cd IndoDdos-Prototype
+cd IndoDdos-Prototype
 
 python protoddls.py
 
