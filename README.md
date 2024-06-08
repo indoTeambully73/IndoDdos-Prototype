@@ -15,3 +15,5 @@ python protoddls.py
 
 ToKeN to enter the script:
 JgS3nG5PvT9aUkR8zYbE2xQ6fW1oLcX4hDvFmCjKgHnNmZbYnBaWp4sUgYcTdRf
+
+and don't forget the stars so they always cheer me up, want to donate? contact my telegram in the script!
