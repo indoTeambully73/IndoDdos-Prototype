@@ -11,9 +11,12 @@ git clone https://github.com/indoTeambully73/IndoDdos-Prototype.git
 
 cd IndoDdos-Prototype
 
-python protoddls.py
+python mainddos.py
 
-ToKeN to enter the script:
+# ToKeN to enter the script:
+
 JgS3nG5PvT9aUkR8zYbE2xQ6fW1oLcX4hDvFmCjKgHnNmZbYnBaWp4sUgYcTdRf
 
 and don't forget the stars so they always cheer me up, want to donate? contact my telegram in the script!
+
+# If there is an error, please report it
